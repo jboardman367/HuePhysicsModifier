@@ -14,6 +14,7 @@ namespace HuePhysicsModifier
         [Draw("Wind strength:", Type = DrawType.ToggleGroup)] public WindLevels windLevel;
         //[Draw("Dev finding wind stronk x", Type = DrawType.Field)] public float xWind = 0f;
         //[Draw("Dev finding wind stronk y", Type = DrawType.Field)] public float yWind = 0f;
+        [Draw("Wind seed:", Type = DrawType.Field)] public int windSeed = 0;
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {
@@ -23,6 +24,7 @@ namespace HuePhysicsModifier
         {
             if (windLevel == WindLevels.None)
                 Main.wind = new UnityEngine.Vector2(0, 0);
+            //Main.wind = new UnityEngine.Vector2(xWind, yWind);
         }
     }
 }
