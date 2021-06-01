@@ -20,7 +20,9 @@ namespace HuePhysicsModifier
 		public static bool forceDblj = false;
 		public static int dbljReset = 0;
 		public static Vector2 wind = new Vector2(0, 0);
-		public static System.Random randomiser = new System.Random();
+		public static System.Random seedRandomiser = new System.Random();
+		public static System.Random windRandomiser = null;
+		public static int lastWindSeed = 0;
 
 		public static bool enabled;
 		public static UnityModManager.ModEntry mod;

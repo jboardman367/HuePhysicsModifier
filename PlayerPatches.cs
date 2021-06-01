@@ -157,7 +157,7 @@ namespace HuePhysicsModifier
 					}
 					if (___isGrounded)
 					{
-						num = Main.wind.x/(1f+2f*Main.settings.groundFrictScale) + Mathf.Lerp(___rigidbody2D.velocity.x - Main.wind.x / (1f + 6f * Main.settings.groundFrictScale), ___axisHorizontal * ___speed * 1.2f * Mathf.Pow(0.7f, Main.settings.airFrictScale - 1), Time.deltaTime * 15f * Main.settings.groundFrictScale);
+						num = Mathf.Lerp(___rigidbody2D.velocity.x, ___axisHorizontal * ___speed * 1.2f, Time.deltaTime * 15f * Main.settings.groundFrictScale);
 						if (___highestHit.transform.tag == "NoPlayerSnap" && ___axisHorizontal == 0f)
 						{
 							num = 0f;
@@ -165,14 +165,7 @@ namespace HuePhysicsModifier
 					}
 					else
 					{
-						if (Main.settings.airFrictScale > 1)
-						{
-							num = Main.wind.x + Mathf.Lerp(___rigidbody2D.velocity.x - Main.wind.x, ___axisHorizontal * ___speed * 1.2f * Mathf.Pow(0.5f, Main.settings.airFrictScale - 1), Time.deltaTime * 10f);
-						}
-						else
-						{
-							num = Main.wind.x + Mathf.Lerp(___rigidbody2D.velocity.x - Main.wind.x, ___axisHorizontal * ___speed * 1.2f, Time.deltaTime * 10f * Main.settings.airFrictScale);
-						}
+						num = Mathf.Lerp(___rigidbody2D.velocity.x, ___axisHorizontal * ___speed * 1.2f, Time.deltaTime * 10f * Main.settings.airFrictScale);
 					}
 					if (___floorAngle > 20f)
 					{
@@ -581,14 +574,14 @@ namespace HuePhysicsModifier
 				{
 					___pushableLastPositionX = 0f;
 				}
-				num2 -= Mathf.Lerp(___gravityForce, 0f, Mathf.Clamp(num2, -10f * Mathf.Sqrt(Main.settings.airFrictScale), 0f) / -10f);
+				num2 -= Mathf.Lerp(___gravityForce, 0f, Mathf.Clamp(num2 * Mathf.Sqrt(Main.settings.airFrictScale), -10f, 0f) / -10f);
 				if (!__instance.isEnabled)
 				{
 					num = 0f;
 				}
 				___rigidbody2D.position = new Vector2(num3, y);
 				___rigidbody2D.velocity = new Vector2(num, num2) + __instance.environmentalVelocity;
-				___rigidbody2D.velocity += !___isGrounded ? Main.wind : new Vector2(Main.wind.x/(1f+2*Main.settings.groundFrictScale),Main.wind.y);
+				___rigidbody2D.velocity += ___isGrounded ? new Vector2(Main.wind.x * (2* Main.settings.airFrictScale / (2 * Main.settings.airFrictScale + Main.settings.groundFrictScale)) * Main.settings.airFrictScale, Main.wind.y * Main.settings.airFrictScale) : new Vector2(Main.wind.x * Main.settings.airFrictScale, Main.wind.y * Main.settings.airFrictScale);
 				if (___isGrounded)
 				{
 					__instance.feetDust.emissionRate = Mathf.Abs(___rigidbody2D.velocity.x) * 5f;
