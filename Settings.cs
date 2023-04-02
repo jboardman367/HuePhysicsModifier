@@ -9,6 +9,7 @@ namespace HuePhysicsModifier
     public class Settings : UnityModManager.ModSettings, IDrawable
     {
         [Draw("Number of extra jumps:", Type = DrawType.Slider, Min = 0, Max = 5)] public int maxJumps = 0;
+        [Draw("Mobile jumps:", Type = DrawType.Toggle)] public bool mobileJumps = false;
         [Draw("Scale ground friction (lower = slippery):", Type = DrawType.Slider, Min = 0.05, Max = 5, Precision = 2)] public float groundFrictScale = 1f;
         [Draw("Scale air resistace:", Type = DrawType.Slider, Min = 0.05, Max = 5, Precision = 2)] public float airFrictScale = 1f;
         [Draw("Wind strength:", Type = DrawType.ToggleGroup)] public WindLevels windLevel;

@@ -474,7 +474,7 @@ namespace HuePhysicsModifier
 					{
 						___jumpPressedInAir = true;
 					}
-					if ((___isGrounded || ___isNotGroundedTimer < ___timeAfterFallPlayerCanJump) && ___axisJump > 0f && ___jumpReset && !___forceJump && !ColourWheelTrigger.instance.maskActive)
+					if ((___isGrounded || ___isNotGroundedTimer < ___timeAfterFallPlayerCanJump) && ___axisJump > 0f && (___jumpReset || Main.settings.mobileJumps && ___isGrounded) && !___forceJump && !ColourWheelTrigger.instance.maskActive)
 					{
 						___isGrounded = false;
 						___jumpReset = false;
