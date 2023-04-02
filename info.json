@@ -2,7 +2,7 @@
 	"Id": "HuePhysicsModifier",
 	"DisplayName": "Physics Modifier",
 	"Author": "luminousLamp367",
-	"Version": "1.0.0",
+	"Version": "1.1.0",
 	"EntryMethod": "HuePhysicsModifier.Main.Load",
 	"LoadAfter": ["HueRandomiser"]
 }
